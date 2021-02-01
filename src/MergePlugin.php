@@ -292,13 +292,9 @@ class MergePlugin implements PluginInterface, EventSubscriberInterface
             if ($package === self::PACKAGE_NAME) {
                 $this->logger->info('composer-merge-plugin installed');
                 $this->state->setFirstInstall(true);
-                if ($this->state->isComposer1()) {
-                    $this->state->setLocked(
-                        $event->getComposer()->getLocker()->isLocked()
-                    );
-                } else {
-                    $this->state->setLocked(false);
-                }
+                $this->state->setLocked(
+                    $event->getComposer()->getLocker()->isLocked()
+                );
             }
         }
     }
